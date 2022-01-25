@@ -1,0 +1,68 @@
+//The goal is to read in a number and output the distance between the prime number that preceeds it and the prime number that follows it.
+//If the number itself is prime then output the distance from the subsequent prime. for example the number is 7 then output four because the next prime number is 11.
+import java.util.Scanner;
+class Main {
+ public static void main(String[] args) {
+Scanner scan = new Scanner(System.in);
+  int num = scan.nextInt();
+  int prime1 = 0; 
+  int prime2=0; 
+
+   int prime3 =0;
+        for(int i=2; i<num/2; i++){
+        if(num%i==0&&i!=1){
+            break;
+        }
+        else if(num%i==0&&i==0){
+            prime3=num;
+            break;
+        }
+
+        else{
+          num=num+1;
+          break;
+        }
+    }
+    
+    for(int j = num; j<1000; j++){  
+      int count = 0;
+        for(int i=2; i<=j/2; i++){  
+          if(j%i==0){
+           count++;
+            }                      
+           }
+           if(count==0){
+             prime1 = j;  
+              break;}
+            }
+
+          
+
+    
+    
+      //int count = 0;
+
+      for(int j = num-1; j>2; j--){  
+      int count = 0;
+        for(int i=2; i<=j/2; i++){  
+          if(j%i==0){
+           count++;
+            }                      
+           }
+           if(count==0){
+             prime2 = j;  
+              break;}
+            }
+
+      
+      
+      if(prime3!=0){
+        System.out.print(prime1);
+      }
+      else{
+      System.out.print(prime1-prime2);}
+
+      }
+
+    
+  }
