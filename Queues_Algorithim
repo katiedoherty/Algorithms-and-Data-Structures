@@ -1,0 +1,56 @@
+//Manipulate the queue according to the given insert and remove commands and output the string that is in the middle of the queue.
+//If there is an even number of strings in the queue output the one nearest to the front. If a remove command is issued to an empty queue then nothing should happen.
+
+import java.util.*;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner myscanner = new Scanner(System.in);
+
+    Queue<String> que = new LinkedList<String>();
+    String insert = "INSERT";
+    String remove = "REMOVE";
+    int top =0;
+
+    while(myscanner.hasNextLine()){
+      String input = myscanner.nextLine();
+
+      if(que.isEmpty()&&input.equalsIgnoreCase(remove)){
+        top=-1;
+      }
+      else if(input.contains(insert)){
+        que.add(input.split(" ")[1]);
+      }
+
+      else if(input.equalsIgnoreCase(remove)&&!que.isEmpty()){
+        que.remove();
+      }
+    }
+     int half_size =que.size()/2-1;
+     int odd = que.size()/2;
+    
+    if(que.size()%2==0){
+    for(int i =0; i<half_size; i++){
+      que.remove();
+    }}
+    else {
+      for(int i =0; i<odd; i++){
+      que.remove();
+    }
+    }
+
+    if(!que.isEmpty()){
+    System.out.println(que.remove());
+    }else
+    {
+      System.out.println("empty");
+    }
+
+   
+      
+    }
+
+   
+
+    
+  }
