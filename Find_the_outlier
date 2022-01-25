@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String args[] ) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+        Scanner scan = new Scanner(System.in);
+        
+        
+        
+            int A = scan.nextInt();
+            int B= scan.nextInt();
+            int C= scan.nextInt();
+        
+        
+        int min =Math.min(A,B);
+        int num =0;
+        if(min>Math.min(B,C)){
+            min = Math.min(B,C);
+        }
+        
+        
+        int max = Math.max(A,B);
+        if(max<Math.max(B,C)){
+            max = Math.max(B,C);
+        }
+
+        int mid = 0;
+        if(A!=min||A!=max){
+          mid =A;
+        }
+        else if(B!=min||B!=max){
+          mid=B;
+        }
+        else if(C!=min||C!=max){
+          mid = C;
+        }
+
+        A=min;
+        B=mid;
+        C=max;
+
+        if(B-A>C-B){
+            num = A;
+            System.out.print(num);
+        }
+        else if(B-A<C-B){
+            num = C;
+            System.out.print(num);
+        }
+        else if(B-A==C-B){
+            System.out.print("NA");
+        }
+        
+    }
+}
+
+
+
