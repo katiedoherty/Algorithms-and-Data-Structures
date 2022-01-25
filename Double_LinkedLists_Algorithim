@@ -1,0 +1,152 @@
+// go through the doubly ended linked list to find the second smallest int value held in any of the links. 
+//If the doubly linked list is defective in anyway then return 0.
+//if there is no second smallest int then return -1
+import java.util.*;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner myscanner = new Scanner(System.in);
+    int num = Integer.parseInt(myscanner.nextLine());
+    Link [] array = new Link[num];
+    for(int i =0; i<num; i++){
+      array[i]=new Link(Integer.parseInt(myscanner.nextLine()));
+    }
+
+     int num1=0;
+      int num2=-1;
+      int num3=1;
+      int good =0;
+      int minus =-1;
+
+    while(myscanner.hasNext()){
+      int select = myscanner.nextInt();
+      int previous= myscanner.nextInt();
+      int next = myscanner.nextInt();
+      
+
+      if(previous!=-1){
+        array[select].previous=array[previous];
+      }
+
+      if(next!=-1){
+        array[select].next = array[next];
+      }
+      if(previous==num2&&next==num3&&select==num1){
+        good =good+1;
+      }
+      if(num1==num-1&&next==minus){
+        good=good+1;
+      }
+
+      num1=num1+1;
+      num2=num2+1;
+      num3=num3+1;
+    }
+
+    LinkedList myList = new LinkedList();
+    if(num>0){
+      myList.first=array[0];
+      myList.last = array[num-1];
+    }
+    
+   if(good==num){System.out.println(search(myList, num));}
+   else{System.out.println("0");}
+   
+    
+  }
+
+  public static int search(LinkedList myList, int num){
+
+    Link current = myList.first;
+    int first = Integer.MAX_VALUE, second=Integer.MAX_VALUE;
+
+    while(current!=null){
+
+      
+      if(current.data<first){
+        second = first;
+        first = current.data;
+      }
+
+      else if(current.data<second && current.data!=first){
+        second = current.data;
+      }
+      current = current.next;
+      
+      }
+
+     
+      
+      
+    
+
+    /*Link current1 = myList2.first;
+    current1=current1.next;
+    
+    int defective=0;
+    
+
+    while(current1!=null){
+      int number =current1.data+1;
+      int number3 = current1.data+2;
+      if(current1.previous.data!=number||current1.next.data!=number3){
+        defective=defective+1;
+      }
+      else if(myList2.last.data==-1){
+        defective=defective-1;
+      }
+
+      current1=current1.next;
+      current1=current1.next; 
+      current1=current1.next; 
+    }*/
+
+   // if(defective>0){return 0;}
+    if (second==Integer.MAX_VALUE)
+    {return -1;}
+    else 
+    {return second;}
+
+  }
+}
+
+class Link{
+  public int data;
+  public Link next;
+  public Link previous;
+
+  public Link(int input){
+    data = input;
+    next = null;
+    previous = null;
+
+  }
+
+}
+
+class LinkedList{
+
+  public Link first;
+  public Link last;
+
+public LinkedList(){
+  first=null;
+  last=null;
+}
+
+public boolean isEmpty(){
+  return first == null;
+}
+
+public void insertHead(Link insert){
+  if(isEmpty()){
+    first=insert;
+    last=insert;
+  }else{
+    first.previous=insert;
+    insert.next=first;
+    first=insert;
+  }
+}
+}
+
