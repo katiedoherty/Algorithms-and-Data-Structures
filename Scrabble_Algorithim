@@ -1,0 +1,112 @@
+//Take ina  list of words and sort them by how they would score in a game of scrabble. Sort them by how many pionts they would earn for each word 
+// with the lowest scoring word first. If two words have the same score then score in alphabetical order.
+
+import java.util.Scanner;
+import java.util.Arrays;
+class Main {
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int number_of_words = Integer.parseInt(scan.nextLine());
+   
+    String [] words = new String[number_of_words];
+
+    for(int i =0; i<words.length; i++){
+      words[i]= scan.nextLine();
+    }
+
+    Sort(words, number_of_words);
+    
+  }
+
+public static void Sort(String words[], int number_of_words){
+
+  for(int i =0; i<words.length; i++){
+    for(int j =i+1; j<words.length; j++){
+      if(words[i].compareTo(words[j])>0){
+        String temp = words[i];  
+        words[i] = words[j];  
+        words[j] = temp;  
+      }
+    }
+      
+  }
+
+  String arrayString = Arrays.toString(words);
+  
+  Scrabble(arrayString, number_of_words);
+
+  
+  
+}
+
+public static void Scrabble(String arrayString, int number_of_words){
+  int [] values = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+
+
+ String alpha = "abcdefghijklmnopqrstuvwxyz";
+ int[] array1 = new int[number_of_words];
+ String [] newArray = arrayString.split(", ");
+
+  int position =0;
+  int sum =0;
+  int remainder =0;
+  int position2=0;
+  
+ 
+  
+for(int j =0; j<arrayString.length(); j++){
+   
+     // arrayString = arrayString.replace("]","");
+    for(int i =0; i<alpha.length(); i++){
+      
+        if(alpha.charAt(i)==arrayString.charAt(j)){
+          position = i;
+          sum = sum+values[position];
+          
+        }
+         if(arrayString.charAt(j)==','||arrayString.charAt(j)==']'){
+          remainder =sum;
+          if(remainder>0){
+            array1[position2]=sum;
+            position2=position2+1;
+            
+            sum=sum-remainder;
+          }
+            
+          }   
+        }
+        
+        }
+
+        String temp="";
+        int temp1 =0;
+        
+
+        
+          for(int j =0; j<array1.length; j++){
+            for(int n =j+1; n<array1.length; n++){
+            if(array1[j]>array1[n]){
+              temp=newArray[j];
+              newArray[j]=newArray[n];
+              newArray[n]=temp;
+
+              temp1 = array1[j];
+              array1[j]=array1[n];
+              array1[n]=temp1;
+            }}
+           
+          }
+        
+            
+
+            for(int i =0; i<newArray.length; i++){
+              System.out.println(newArray[i]);
+              System.out.println(array1[i]);
+            
+          }
+          
+        
+}
+        
+      }
+
